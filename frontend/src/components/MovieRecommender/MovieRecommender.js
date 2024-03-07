@@ -21,11 +21,31 @@ const movies = [
     description: 'This is a brief description of Movie 3.',
     posterUrl: 'https://via.placeholder.com/150'
   },
+  {
+    id: 4,
+    title: 'Movie Title 4',
+    description: 'This is a brief description of Movie 4.',
+    posterUrl: 'https://via.placeholder.com/150'
+  },
+  {
+    id: 5,
+    title: 'Movie Title 5',
+    description: 'This is a brief description of Movie 5.',
+    posterUrl: 'https://via.placeholder.com/150'
+  },
+  {
+    id: 6,
+    title: 'Movie Title 6',
+    description: 'This is a brief description of Movie 6.',
+    posterUrl: 'https://via.placeholder.com/150'
+  },
+  
   // Add more movies as needed
 ];
 
 export default function MovieRecommender() {
   return (
+
     <div className={styles.movieRecommender}>
       {movies.map((movie) => (
         <div key={movie.id} className={styles.movieCard}>

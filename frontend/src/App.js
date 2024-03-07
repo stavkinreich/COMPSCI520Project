@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import UserLogin from "./UserLogin"
-import UserRegister from "./UserRegister"
-import Landing from './Landing';
+import UserLogin from "./pages/UserLogin"
+import UserRegister from "./pages/UserRegister"
+import Landing from './pages/Landing';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {

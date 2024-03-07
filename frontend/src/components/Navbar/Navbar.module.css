@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #333;
+    background-color: #744997;
     overflow: hidden;
   }
   
@@ -21,6 +21,6 @@
   }
   
   .navbar ul li a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #130D18;
+    color: white;
   }
