@@ -1,0 +1,42 @@
+.movieRecommender {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.movieCard {
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.movieCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.movieCard img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.movieCard .content {
+  padding: 10px;
+}
+
+.movieCard h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.movieCard p {
+  font-size: 14px;
+  color: #666;
+}

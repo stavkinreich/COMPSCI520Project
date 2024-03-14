@@ -1,0 +1,7 @@
+.scrollable-section {
+    height: 820px; /* or 'max-height: 400px;' depending on your needs */
+    overflow-y: scroll;
+    border: 0px solid #ccc; /* Optional, just for visibility */
+    padding: 0px;
+    box-sizing: border-box;
+  }
