@@ -6,14 +6,17 @@ function UserRegister() {
 
     const [userInfo, setUserInfo] = useState({
         email: '',
-        password: ''
+        password: '',
+        name: ''
     });
     const [exceptions, setExceptions] = useState({});
     const handleInfo = (event) => {
-        setUserInfo(before => ({...before, [event.target.name]: [event.target.value]}))
+        setUserInfo(before => ({...before, [event.target.name]: event.target.value}))
+        console.log(userInfo);
     }
-    const handleSubmit = (event) => {
+    const handleSubmit= (event) => {
         event.preventDefault();
+        console.log("got it");
         setExceptions(PasswordEmailValidation(userInfo));
     }
     return (
@@ -23,17 +26,20 @@ function UserRegister() {
                 <form action="" onSubmit={handleSubmit}>
                     <div className="mb-3 text-center">
                         <label htmlFor="name"><strong>Name</strong></label>
-                        <input type="name" name="name" placeholder="Enter Your Name" className="form-control rounded-0" onChance={handleInfo}/>
+                        <input type="name" name="name" placeholder="Enter Your Name" className="form-control rounded-0" onChange={handleInfo}/>
+                        {exceptions.name && <span className="text-danger">Not Valid Name</span>}
                     </div>
                     <div className="mb-3 text-center">
                         <label htmlFor="email"><strong>Email</strong></label>
-                        <input type="email" name="email" placeholder="Enter Your Email" className="form-control rounded-0" onChance={handleInfo}/>
+                        <input type="email" name="email" placeholder="Enter Your Email" className="form-control rounded-0" onChange={handleInfo}/>
+                        {exceptions.email && <span className="text-danger">Not Valid Email</span>}
                     </div>
                     <div className="mb-3 text-center">
                         <label htmlFor="password"><strong>Password</strong></label>
-                        <input type="password" name="password" placeholder="Enter Your Password" className="form-control rounded-0" onChance={handleInfo}/>
+                        <input type="password" name="password" placeholder="Enter Your Password" className="form-control rounded-0" onChange={handleInfo}/>
+                        {exceptions.password && <span className="text-danger">Not Valid Password</span>}
                     </div>
-                    <Link to="/" className="btn btn-success w-100 text-decoration-none">Create Account</Link>
+                    <button className="btn btn-success w-100">Create Account</button>
                 </form>
             </div>
         </div>

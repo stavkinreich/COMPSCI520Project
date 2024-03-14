@@ -9,7 +9,7 @@ function UserLogin() {
     });
     const [exceptions, setExceptions] = useState({});
     const handleInfo = (event) => {
-        setUserInfo(before => ({...before, [event.target.name]: [event.target.value]}))
+        setUserInfo(before => ({...before, [event.target.name]: event.target.value}))
     }
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,11 +21,11 @@ function UserLogin() {
             <form action="">
                 <div className="mb-3 text-center" onSubmit={handleSubmit}>
                     <label htmlFor="email"><strong>Email</strong></label>
-                    <input type="email" name="email" placeholder="Enter Your Email" className="form-control rounded-0" onChance={handleInfo}/>
+                    <input type="email" name="email" placeholder="Enter Your Email" className="form-control rounded-0" onChange={handleInfo}/>
                 </div>
                 <div className="mb-3 text-center">
                     <label htmlFor="password"><strong>Password</strong></label>
-                    <input type="password" name="password" placeholder="Enter Your Password" className="form-control rounded-0" onChance={handleInfo}/>
+                    <input type="password" name="password" placeholder="Enter Your Password" className="form-control rounded-0" onChange={handleInfo}/>
                 </div>
                 <button className="btn btn-success w-100">Log In</button>
                 <p></p>
