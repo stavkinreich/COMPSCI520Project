@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import PasswordEmailValidation from '../PasswordEmailValidation';
 
 function UserRegister() {
-
+    const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({
         email: '',
         password: '',
@@ -12,12 +12,34 @@ function UserRegister() {
     const [exceptions, setExceptions] = useState({});
     const handleInfo = (event) => {
         setUserInfo(before => ({...before, [event.target.name]: event.target.value}))
-        console.log(userInfo);
     }
     const handleSubmit= (event) => {
         event.preventDefault();
-        console.log("got it");
-        setExceptions(PasswordEmailValidation(userInfo));
+        const userError = PasswordEmailValidation(userInfo);
+        setExceptions(userError);
+        if(Object.keys(userError).length === 0) {
+            var request = new Request('http://localhost:3001/api/newUser', {
+                method: 'POST',
+                headers: new Headers({'Content-Type': 'application/json'}),
+                body: JSON.stringify(userInfo)
+            })
+            fetch(request)
+                .then(function(response) {
+                    response.json()
+                        .then(function(data) {
+                            console.log(data);
+                            if(data.message === 0) {
+                                setExceptions({internal: "internalError"});
+                            }
+                            if(data.message === 1) {
+                                setExceptions({emailInUse: "emailInUse"});
+                            }
+                            else {
+                                navigate('/RegisteredSuccessfully')
+                            }
+                        })
+                })
+        }
     }
     return (
         <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
@@ -37,7 +59,10 @@ function UserRegister() {
                     <div className="mb-3 text-center">
                         <label htmlFor="password"><strong>Password</strong></label>
                         <input type="password" name="password" placeholder="Enter Your Password" className="form-control rounded-0" onChange={handleInfo}/>
-                        {exceptions.password && <span className="text-danger">Not Valid Password</span>}
+                        {exceptions.password && <span className="text-danger">Password must contain at least one uppercase letter, one digit, one special character or underscore,
+                        and is at least 7 characters long</span>}
+                        {exceptions.emailInUse && <span className="text-danger">Email Already in use</span>}
+                        {exceptions.internal && <span className="text-danger">Internal Error</span>}
                     </div>
                     <button className="btn btn-success w-100">Create Account</button>
                 </form>
