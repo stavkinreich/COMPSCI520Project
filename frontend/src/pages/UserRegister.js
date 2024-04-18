@@ -31,7 +31,7 @@ function UserRegister() {
                             if(data.message === 0) {
                                 setExceptions({internal: "internalError"});
                             }
-                            if(data.message === 1) {
+                            else if(data.message === 1) {
                                 setExceptions({emailInUse: "emailInUse"});
                             }
                             else {
