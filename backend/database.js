@@ -6,9 +6,9 @@ const PORT = 3001;
 let pool = new pg.Pool({
     port: 7777,
     password: '1!Password',
-    database: 'database-1',
-    host: 'database-1.cp824c4sg7kg.us-east-2.rds.amazonaws.com',
-    user: 'compsci520proj',
+    database: 'COMPSCI520DATABASE',
+    host: 'compsci520databaseid.ceujymm881wk.us-east-1.rds.amazonaws.com',
+    user: 'COMPSCI520USR',
     ssl: {
                 rejectUnauthorized: false
             }
