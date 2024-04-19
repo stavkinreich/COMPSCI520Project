@@ -7,7 +7,7 @@ let pool = new pg.Pool({
     port: 7777,
     password: '1!Password',
     database: 'COMPSCI520DATABASE',
-    host: 'compsci520databaseid.ceujymm881wk.us-east-1.rds.amazonaws.com',
+    host: 'compsci520databaseid.c7wqy4kmqkle.us-east-1.rds.amazonaws.com',
     user: 'COMPSCI520USR',
     ssl: {
                 rejectUnauthorized: false
@@ -41,7 +41,6 @@ app.post('/api/newUser', function(request, response) {
                 }
             })
         }
-        done();
     });
 });
 
