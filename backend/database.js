@@ -1,5 +1,8 @@
+const emailjs = require('@emailjs/browser');
 let express = require('express');
 let bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 let pg = require('pg');
 const PORT = 3001;
 
@@ -17,14 +20,136 @@ let pool = new pg.Pool({
 let app = express();
 app.use(express.json());
 
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({extended: true}));
-
 app.use(function(request, response, next) {
     response.header("Access-Control-Allow-Origin", '*');
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 })
+const myfunction = async function(token) {
+    return new Promise(resolve => {
+        pool.connect(async (err, db, done) => {
+                  try {
+                    const result = await db.query("SELECT email FROM \"UserToken\" WHERE token2 = $1", [token]);
+                    if(result.rows.length === 1) {
+                        resolve(result.rows[0]);
+                    }
+                  } catch (error) {
+                    console.error('Error executing query:', error);
+                     resolve({email: "error"});
+                  }
+                  done();
+        });
+    });
+}
+
+const getUserInfo = async function(email) {
+    return new Promise(resolve => {
+        pool.connect(async (err, db, done) => {
+            try {
+                const result = await db.query("SELECT password, validated FROM \"UserInfo\" WHERE email = $1", [email]);
+                resolve(result);
+            } catch (error) {
+                console.error('Error executing query:', error);
+                resolve({error: "error"});
+            }
+            done();
+        });
+    });
+}
+
+app.post('/api/loginUser', async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const getInfo = await getUserInfo(email);
+    if(getInfo.error === "error") {
+        res.status(404).send({message: 0});
+    }
+    else if(getInfo.rows.length === 1) {
+        if(getInfo.rows[0].password !== password) {
+            res.status(404).send({message: 1});
+        }
+        else if(!getInfo.rows[0].validated) {
+            res.status(404).send({message: 2});
+        }
+        else {
+            res.status(200).send({message: 3});
+        }
+    }
+    else if(getInfo.rows.length === 0) {
+        res.status(404).send({message: 1});
+    }
+});
+
+app.post('/api/VerifyUser', async (req, res) => {
+    const token = req.body.token;
+    const result = await myfunction(token);
+    if(result.email === "error") {
+        res.status(404).send({message: 0});
+    }
+    else {
+        pool.connect(async (err, db, done) => {
+            if(err) {
+                res.status(404).send({message: 0})
+            }
+            else {
+                db.query("UPDATE \"UserInfo\" SET validated = true WHERE email = $1", [result.email], (err, table) => {
+                    if (err) {
+                        res.status(404).send({message: 1})
+                    }
+                    else {
+                        res.status(200).send({message: 2})
+                    }
+                });
+            }
+            done();
+        });
+    }
+});
+
+app.post('/api/send-verification-email', (req, res) => {
+    const email = req.body.email;
+    const token = String.fromCharCode(97 + Math.floor(Math.random() * 26)) + crypto.randomBytes(30).toString('hex');
+    var request = new Request('http://localhost:3001/api/RegistrationToken', {
+                    method: 'POST',
+                    headers: new Headers({'Content-Type': 'application/json'}),
+                    body: JSON.stringify({email: email, token: token})
+                })
+                fetch(request)
+                    .then(function(response) {
+                        response.json()
+                            .then(function(data) {
+                                if(data.message === 0) {
+                                    res.status(404).send({message: "trouble connecting"})
+                                }
+                                else if(data.message === 1) {
+                                    res.status(404).send({message: "not created entry"})
+                                }
+                                else {
+                                    res.status(200).send({message: "email send", token: token})
+                                }
+                            })
+                    })
+    });
+
+app.post('/api/RegistrationToken', function(request, response) {
+    pool.connect((err, db, done) => {
+        if(err) {
+            response.status(404).send({message: 0})
+        }
+        else {
+            db.query("INSERT INTO \"UserToken\" (email, token2) VALUES($1, $2)",[request.body.email, request.body.token], (err, table) => {
+                if (err) {
+                    response.status(404).send({message: 1})
+                }
+                else {
+                    response.status(200).send({message: 2})
+                }
+            })
+        }
+        done();
+    });
+});
+
 
 app.post('/api/newUser', function(request, response) {
     pool.connect((err, db, done) => {
@@ -41,6 +166,7 @@ app.post('/api/newUser', function(request, response) {
                 }
             })
         }
+        done();
     });
 });
 

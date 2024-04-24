@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function RegisterSuccessful() {
     return (
             <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
