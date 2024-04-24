@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import PasswordEmailValidation from '../PasswordEmailValidation';
+import emailjs from '@emailjs/browser';
 
 function UserRegister() {
+    emailjs.init({
+      publicKey: 'TpP3AfQqh7okbmM0a'
+     });
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({
         email: '',
@@ -27,7 +31,6 @@ function UserRegister() {
                 .then(function(response) {
                     response.json()
                         .then(function(data) {
-                            console.log(data);
                             if(data.message === 0) {
                                 setExceptions({internal: "internalError"});
                             }
@@ -35,7 +38,35 @@ function UserRegister() {
                                 setExceptions({emailInUse: "emailInUse"});
                             }
                             else {
-                                navigate('/RegisteredSuccessfully')
+                                var request = new Request('http://localhost:3001/api/send-verification-email', {
+                                                method: 'POST',
+                                                headers: new Headers({'Content-Type': 'application/json'}),
+                                                body: JSON.stringify({email: userInfo.email})
+                                            })
+                                            fetch(request)
+                                                .then(function(response) {
+                                                    response.json()
+                                                        .then(function(data) {
+                                                            console.log(data.message)
+                                                            if(data.message === "email send") {
+                                                                const address = "http://localhost:3000/verify-email/" + data.token;
+                                                                emailjs.send("service_qzwhlos","template_q7npdqh",{
+                                                                      message: address,
+                                                                      from_email: "stavaws@gmail.com",
+                                                                      to_email: userInfo.email
+                                                                      })
+                                                                      .then(
+                                                                        () => {
+                                                                          console.log('SUCCESS!');
+                                                                        },
+                                                                        (error) => {
+                                                                          console.log('FAILED...', error.text);
+                                                                        },
+                                                                      );
+                                                                navigate('/RegisteredSuccessfully')
+                                                            }
+                                                        })
+                                                })
                             }
                         })
                 })

@@ -15,7 +15,7 @@ function App() {
         <Route path="/Register" element={<UserRegister/>}></Route>
         <Route path="/Login" element={<UserLogin/>}></Route>
         <Route path="/RegisteredSuccessfully" element={<RegisterSuccessful/>}></Route>
-        <Route path="/verify-email/:key" element={<VerifiedEmail/>} />
+        <Route path="/verify-email/:token" element={<VerifiedEmail/>} />
       </Routes>
     </BrowserRouter>
   );
