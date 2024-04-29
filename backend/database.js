@@ -46,7 +46,7 @@ const getUserInfo = async function(email) {
     return new Promise(resolve => {
         pool.connect(async (err, db, done) => {
             try {
-                const result = await db.query("SELECT password, validated FROM \"UserInfo\" WHERE email = $1", [email]);
+                const result = await db.query("SELECT email, password, validated, preflang, prefmov, prefgen FROM \"UserInfo\" WHERE email = $1", [email]);
                 resolve(result);
             } catch (error) {
                 console.error('Error executing query:', error);
@@ -72,7 +72,7 @@ app.post('/api/loginUser', async (req, res) => {
             res.status(404).send({message: 2});
         }
         else {
-            res.status(200).send({message: 3});
+            res.status(200).send({message: 3, retObj: getInfo.rows[0]});
         }
     }
     else if(getInfo.rows.length === 0) {
