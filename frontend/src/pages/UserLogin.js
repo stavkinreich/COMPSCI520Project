@@ -33,6 +33,9 @@ function UserLogin() {
                                     }
                                     if(data.message === 3) {
                                         globalThis.userName = userInfo.email;
+                                        globalThis.prefLang = data.retObj.prefLang;
+                                        globalThis.prefMov = data.retObj.prefMov;
+                                        globalThis.prefGen = data.retObj.prefGen;
                                         navigate('/');
                                     }
                                 });
