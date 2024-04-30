@@ -7,6 +7,8 @@
   background-color: #f0f0f0;
 }
 
+.rowC{display:flex; flex-direction:row;}
+
 .movieCard {
   width: 200px;
   border: 1px solid #ddd;

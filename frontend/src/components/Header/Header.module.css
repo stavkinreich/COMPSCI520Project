@@ -3,5 +3,22 @@
     color: #9267B6;
     padding: 20px;
     font-family: "Gill Sans";
+    justify-content: center;
+    margin: auto;
     text-align: center;
   }
+
+.centerContainer {
+  flex-grow: 1; /* Allow center container to grow and push right component to the right */
+}
+
+.center {
+    margin: auto;
+}
+
+.right {
+  text-align: right; /* Pushes the element to the right */
+  /* Alternatively, you can use:
+  justify-self: end; */
+  font-size: 20px;
+}
