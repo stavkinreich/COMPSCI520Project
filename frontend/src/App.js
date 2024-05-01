@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter className="App">
       <Routes>
-        <Route path="/" element={<Landing/>}></Route>
+        <Route path="/:keyword?" element={<Landing/>}></Route>
         <Route path="/Register" element={<UserRegister/>}></Route>
         <Route path="/Login" element={<UserLogin/>}></Route>
         <Route path="/RegisteredSuccessfully" element={<RegisterSuccessful/>}></Route>
