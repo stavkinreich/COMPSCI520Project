@@ -4,6 +4,7 @@ let bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 let pg = require('pg');
+const { searchMovies } = require('./search-dbs');
 const PORT = 3001;
 
 let pool = new pg.Pool({
@@ -171,5 +172,19 @@ app.post('/api/newUser', function(request, response) {
 });
 
 app.listen(PORT, () => console.log('Listening on port' + PORT));
+
+app.get('/search-dbs', async (req, res) => {
+    const {query} = req.query;
+    if(!query) {
+        return res.status(400).send({message: 'Query needed'});
+    }
+
+    try {
+        const movies = await searchMovies(query);
+        res.json(movies);
+    } catch (error) {
+        res.status(500).send({message: 'Failed to fetch films', error: error.message})
+    }
+});
 
 
