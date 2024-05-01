@@ -9,6 +9,10 @@
 
 .rowC{display:flex; flex-direction:row;}
 
+.leftComp{float: left; width: 50%;}
+
+.rightComp{float: right; width: 50%}
+
 .movieCard {
   width: 200px;
   border: 1px solid #ddd;
