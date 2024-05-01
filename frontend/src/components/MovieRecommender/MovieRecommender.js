@@ -39,7 +39,42 @@ const movies = [
     description: 'This is a brief description of Movie 6.',
     posterUrl: 'https://via.placeholder.com/150'
   },
-  
+  {
+      id: 6,
+      title: 'Movie Title 6',
+      description: 'This is a brief description of Movie 6.',
+      posterUrl: 'https://via.placeholder.com/150'
+    },
+    {
+        id: 6,
+        title: 'Movie Title 6',
+        description: 'This is a brief description of Movie 6.',
+        posterUrl: 'https://via.placeholder.com/150'
+      },
+      {
+          id: 6,
+          title: 'Movie Title 6',
+          description: 'This is a brief description of Movie 6.',
+          posterUrl: 'https://via.placeholder.com/150'
+        },
+        {
+            id: 6,
+            title: 'Movie Title 6',
+            description: 'This is a brief description of Movie 6.',
+            posterUrl: 'https://via.placeholder.com/150'
+          },
+          {
+              id: 6,
+              title: 'Movie Title 6',
+              description: 'This is a brief description of Movie 6.',
+              posterUrl: 'https://via.placeholder.com/150'
+            },
+            {
+                id: 6,
+                title: 'Movie Title 6',
+                description: 'This is a brief description of Movie 6.',
+                posterUrl: 'https://via.placeholder.com/150'
+              }
   // Add more movies as needed
 ];
 
