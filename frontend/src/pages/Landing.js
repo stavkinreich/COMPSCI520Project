@@ -20,7 +20,7 @@ function Landing() {
             </div>
             <div className={styles.rightComp}>
             <ScrollableSection>
-                <MovieRecommender/>
+                {/*<MovieRecommender/>*/}
             </ScrollableSection>
             </div>
         </div>
