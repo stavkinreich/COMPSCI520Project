@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MovieRecommender from '../components/MovieRecommender/MovieRecommender.js'
+import styles from '../components/MovieRecommender/MovieRecommender.module.css';
 
 function SearchMovie() {
   const [keyword, setKeyword] = useState('');
@@ -32,24 +33,27 @@ function SearchMovie() {
   };
 
   return (
-    <div>
-      <div>
-      <input
-        type="text"
-        placeholder="Search for Movie"
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-      </div>
-      {searchedMovies.length !== 0 ?
-      (<div>
-        <MovieRecommender
-            key={new Date().getTime()}
-            movies = {searchedMovies}
-        />
-      </div>) : null}
-    </div>
+  <div>
+  <div className={styles.searchContainer}>
+          <input
+            type="text"
+            className={styles.searchInput}
+            placeholder="Search for Movie"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+          <button className={styles.searchButton} onClick={handleSearch}>
+            Search
+          </button>
+   </div>
+        {searchedMovies.length !== 0 ?
+              (<div>
+                <MovieRecommender
+                    key={new Date().getTime()}
+                    movies = {searchedMovies}
+                />
+              </div>) : null}
+  </div>
   );
 }
 

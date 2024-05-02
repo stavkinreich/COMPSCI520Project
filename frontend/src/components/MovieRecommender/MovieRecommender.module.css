@@ -7,6 +7,37 @@
   background-color: #f0f0f0;
 }
 
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.searchInput {
+  width: 70%;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+}
+
+.searchButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.searchButton:hover {
+  background-color: #0056b3;
+}
+
 .rowC{display:flex; flex-direction:row;}
 
 .leftComp{float: left; width: 50%;}
