@@ -5,7 +5,6 @@ export default function Checkbox() {
     const options = ['Languages', 'Genre', 'Rating']; // Define your options here
     const languages = ['English', 'French', 'German', 'Spanish', 'Italian', 'Hindi']
     const genres = ['Action', 'Adventure', 'Horror', 'Comedy', 'Romance', 'Science Fiction']
-    const ratings = [1,2,3,4,5,6,7,8,9,10]
     const [checkedState, setCheckedState] = useState(
         new Array(options.length).fill(false)
     );
