@@ -5,17 +5,17 @@ export default function Checkbox() {
     const options = ['Languages', 'Genre', 'Rating']; // Define your options here
     const languages = ['English', 'French', 'German', 'Spanish', 'Italian', 'Hindi']
     const genres = ['Action', 'Adventure', 'Horror', 'Comedy', 'Romance', 'Science Fiction']
-    const [checkedState, setCheckedState] = useState(
-        new Array(options.length).fill(false)
-    );
+    // const [checkedState, setCheckedState] = useState(
+    //     new Array(options.length).fill(false)
+    // );
 
-    const handleOnChange = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
-            index === position ? !item : item
-        );
+    // const handleOnChange = (position) => {
+    //     const updatedCheckedState = checkedState.map((item, index) =>
+    //         index === position ? !item : item
+    //     );
 
-        setCheckedState(updatedCheckedState);
-    };
+    //     setCheckedState(updatedCheckedState);
+    // };
 
     return (
         <div>
@@ -29,8 +29,8 @@ export default function Checkbox() {
                             type="checkbox"
                             name={language}
                             value={language}
-                            checked={checkedState[index]}
-                            onChange={() => handleOnChange(index)}
+                            // checked={checkedState[index]}
+                            // onChange={() => handleOnChange(index)}
                         />
                         {language}
                     </label>
@@ -44,8 +44,8 @@ export default function Checkbox() {
                             type="checkbox"
                             name={genre}
                             value={genre}
-                            checked={checkedState[index]}
-                            onChange={() => handleOnChange(index)}
+                            // checked={checkedState[index]}
+                            // onChange={() => handleOnChange(index)}
                         />
                         {genre}
                     </label>
