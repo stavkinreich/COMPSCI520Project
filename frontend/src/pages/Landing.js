@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../components/Header/Header.js'
 import Navbar from '../components/Navbar/Navbar.js'
 import Footer from '../components/Footer/Footer.js'
@@ -9,22 +9,80 @@ import SearchMovie from './SearchMovie';
 //issue with category container currently- basically should be horizontally scrollable row, like on netflix
 
 function Landing() {
+  const [trigRender, setTrigRender] = useState(0);
+  const [checkedGenres, setCheckedGenres] = useState([]);
+  const [checkedLanguage, setCheckedLanguages] = useState([]);
+  const genres = globalThis.prefGen === null || globalThis.prefGen === undefined ? [] :
+                         globalThis.prefGen;
+  const languages = globalThis.prefLang === null || globalThis.prefLang === undefined ? [] :
+                            globalThis.prefLang;
+  const handleCheckLanguageChange = (event) => {
+      const { value, checked } = event.target;
+      if (checked) {
+        setCheckedLanguages([...checkedLanguage, value]);
+      } else {
+        setCheckedLanguages(checkedLanguage.filter(item => item !== value));
+    };
+    }
+  const arrayIncludesObject = (array, object) => array.some(item => isEqual(item, object));
+  const handleCheckGenreChange = (event) => {
+     const checkedId = event.target.value;
+     if(event.target.checked){
+      setCheckedGenres([...checkedGenres, JSON.parse(checkedId)])
+     }else{
+      setCheckedGenres(checkedGenres.filter(id=> id["id"] !== JSON.parse(checkedId)["id"]))
+     }
+     }
   return (
       <div >
         <Header/>
         <div className={styles.rowC}>
             <div className={styles.leftComp}>
-                <ScrollableSection>
-                    <SearchMovie />
-                </ScrollableSection>
+            <ScrollableSection>
+                <div className={styles.filterSection}>
+                    <div className={styles.genreFilter}>
+                        <h3>Genres</h3>
+                        {genres.map((genre, index) => (
+                            <div key={genre} className={styles.checkboxContainer}>
+                                <input
+                                   type="checkbox"
+                                   value={JSON.stringify(genre)}
+                                   checked={checkedGenres.some(elem => elem["id"] === JSON.parse(JSON.stringify(genre))["id"])}
+                                   onChange={(event) => { handleCheckGenreChange(event) }}
+                                   />
+                                   <label htmlFor={`checkbox-${genre.id}`}>{genre.name}</label>
+                            </div>
+                            ))}
+                    </div>
+                    <div className={styles.languageFilter}>
+                        <h3>Languages</h3>
+                        {languages.map((language, index) => (
+                            <div key={language} className={styles.checkboxContainer}>
+                                <input type="checkbox"
+                                id={language}
+                                value={language}
+                                checked={checkedLanguage.includes(language)}
+                                onChange={handleCheckLanguageChange} />
+                                <label htmlFor={language}>{language}</label>
+                            </div>
+                            ))}
+                    </div>
+                    <button className={styles.searchButton} onClick={() => setTrigRender(trigRender + 1)}>
+                                Refresh Preferences
+                    </button>
+                </div>
+            </ScrollableSection>
             </div>
             <div className={styles.rightComp}>
             <ScrollableSection>
-                {/*<MovieRecommender/>*/}
+                <SearchMovie
+                    key={new Date().getTime()}
+                    genres = {checkedGenres}
+                    languages = {checkedLanguage}
+                />
             </ScrollableSection>
             </div>
         </div>
-        {/* <Footer /> */}
       </div>
   );
 }

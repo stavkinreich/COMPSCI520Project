@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MovieRecommender from '../components/MovieRecommender/MovieRecommender.js'
 import styles from '../components/MovieRecommender/MovieRecommender.module.css';
 
-function SearchMovie() {
+function SearchMovie({genres, languages}) {
   const [keyword, setKeyword] = useState('');
   const [searchedMovies, setSearchedMovies] = useState([])
   const handleSearch = (event) => {
@@ -20,6 +20,12 @@ function SearchMovie() {
       .then(response => {
         let result = [];
         for(let i = 0; i < response.results.length; i++) {
+            console.log(genres);
+            console.log(languages);
+            if((languages.length !== 0 && !languages.includes(response.results[i]["original_language"])) || (genres.length !== 0 && response.results[i]["genre_ids"].every(item => !(genres.some(elem => elem["id"] === item))))) {
+                console.log("hit")
+                continue;
+            }
             let curObj = {id: i + 1};
             curObj["posterUrl"] = "https://image.tmdb.org/t/p/original/" + response.results[i]["poster_path"];
             curObj["title"] = response.results[i]["original_title"];

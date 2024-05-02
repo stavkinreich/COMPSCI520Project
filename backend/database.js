@@ -48,6 +48,7 @@ const getUserInfo = async function(email) {
         pool.connect(async (err, db, done) => {
             try {
                 const result = await db.query("SELECT email, password, validated, preflang, prefmov, prefgen, prefmovid FROM \"UserInfo\" WHERE email = $1", [email]);
+                console.log(result);
                 resolve(result);
             } catch (error) {
                 console.error('Error executing query:', error);
@@ -97,6 +98,7 @@ app.post('/api/loginUser', async (req, res) => {
             res.status(404).send({message: 2});
         }
         else {
+            console.log(getInfo.rows[0])
             res.status(200).send({message: 3, retObj: getInfo.rows[0]});
         }
     }

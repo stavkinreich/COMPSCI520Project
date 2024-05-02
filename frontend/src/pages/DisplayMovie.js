@@ -9,7 +9,7 @@ function DisplayMovie({movie}) {
             globalThis.prefMovId = globalThis.prefMovId.filter(elem => elem !== movie["imdb_id"]);
             globalThis.prefMov = globalThis.prefMov.filter(elem => elem !== movie["original_title"]);
             globalThis.prefLang = globalThis.prefLang.filter(elem => elem !== movie["original_language"]);
-            globalThis.prefGen = globalThis.prefGen.filter(el => !movie["genres"].some(obj => obj["name"] === el));
+            globalThis.prefGen = globalThis.prefGen.filter(elem => !movie["genres"].some(obj => obj["id"] === elem["id"]));
         }
         else {
             globalThis.prefMovId === null || globalThis.prefMovId === undefined ? globalThis.prefMovId = [movie["imdb_id"]] :
@@ -18,8 +18,8 @@ function DisplayMovie({movie}) {
                 globalThis.prefMov.push(movie["original_title"]);
             globalThis.prefLang === null || globalThis.prefLang === undefined ? globalThis.prefLang = [movie["original_language"]] :
                 globalThis.prefLang.push(movie["original_language"]);
-             globalThis.prefGen === null || globalThis.prefGen === undefined ? globalThis.prefGen = movie["genres"].map(gen => gen["name"]) :
-                movie["genres"].map(gen => globalThis.prefGen.push(gen["name"]));
+             globalThis.prefGen === null || globalThis.prefGen === undefined ? globalThis.prefGen = movie["genres"] :
+                movie["genres"].map(gen => globalThis.prefGen.push(gen));
         }
         const newPref = {
           userName: globalThis.userName,

@@ -32,10 +32,11 @@ function UserLogin() {
                                         setExceptions({validate: "validateError"});
                                     }
                                     if(data.message === 3) {
+                                        console.log(data.retObj);
                                         globalThis.userName = userInfo.email;
-                                        globalThis.prefLang = data.retObj.prefLang;
-                                        globalThis.prefMov = data.retObj.prefMov;
-                                        globalThis.prefGen = data.retObj.prefGen;
+                                        globalThis.prefLang = data.retObj.preflang;
+                                        globalThis.prefMov = data.retObj.prefmov;
+                                        globalThis.prefGen = data.retObj.prefgen;
                                         globalThis.prefMovId = data.retObj.prefmovid;
                                         navigate('/');
                                     }
