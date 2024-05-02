@@ -7,7 +7,6 @@ export default function Navbar() {
     <nav className={styles.navbar}>
     <ul>
       <li><Link to="/">Home</Link></li>
-      <li>{globalThis.userName === null || globalThis.userName === undefined ? <Link to="/Login">Login/Register</Link> : <Link to="/Profile">Profile</Link>}</li>
     </ul>
   </nav>
   );
