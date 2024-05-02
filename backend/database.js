@@ -173,7 +173,7 @@ app.post('/api/newUser', function(request, response) {
 
 app.listen(PORT, () => console.log('Listening on port' + PORT));
 
-app.get('/search-dbs', async (req, res) => {
+app.get('/api/search-dbs', async (req, res) => {
     const {query} = req.query;
     if(!query) {
         return res.status(400).send({message: 'Query needed'});

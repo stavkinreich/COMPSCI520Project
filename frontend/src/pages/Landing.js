@@ -16,6 +16,34 @@ function Landing() {
             <div className={styles.leftComp}>
                 <ScrollableSection>
                     <SearchMovie />
+                    <div className={styles.filterSection}>
+                        <div className={styles.genreFilter}>
+                            <h3>Genres</h3>
+                            <div className={styles.checkboxContainer}>
+                                <input type="checkbox" id="action" name="action"/>
+                                <label htmlFor="action">Action</label>
+                            </div>
+                            <div className={styles.checkboxContainer}>
+                                <input type="checkbox" id="comedy" name="comedy"/>
+                                <label htmlFor="comedy">Comedy</label>
+                            </div>
+                            
+                        </div>
+                        <div className={styles.languageFilter}>
+                            <h3>Languages</h3>
+                            <div className={styles.checkboxContainer}>
+                                <input type="checkbox" id="english" name="english"/>
+                                <label htmlFor="english">English</label>
+                            </div>
+                            <div className={styles.checkboxContainer}>
+                                <input type="checkbox" id="spanish" name="spanish"/>
+                                <label htmlFor="spanish">Spanish</label>
+                            </div>
+                        </div>
+                        <div className={styles.favoriteMovies}>
+                            <h3>Favorited Movies</h3>
+                        </div>
+                    </div>
                 </ScrollableSection>
             </div>
             <div className={styles.rightComp}>
