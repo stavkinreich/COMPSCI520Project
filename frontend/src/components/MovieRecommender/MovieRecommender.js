@@ -40,41 +40,41 @@ const movies = [
     posterUrl: 'https://via.placeholder.com/150'
   },
   {
-      id: 6,
-      title: 'Movie Title 6',
-      description: 'This is a brief description of Movie 6.',
-      posterUrl: 'https://via.placeholder.com/150'
-    },
-    {
-        id: 6,
-        title: 'Movie Title 6',
-        description: 'This is a brief description of Movie 6.',
-        posterUrl: 'https://via.placeholder.com/150'
-      },
-      {
-          id: 6,
-          title: 'Movie Title 6',
-          description: 'This is a brief description of Movie 6.',
-          posterUrl: 'https://via.placeholder.com/150'
-        },
-        {
-            id: 6,
-            title: 'Movie Title 6',
-            description: 'This is a brief description of Movie 6.',
-            posterUrl: 'https://via.placeholder.com/150'
-          },
-          {
-              id: 6,
-              title: 'Movie Title 6',
-              description: 'This is a brief description of Movie 6.',
-              posterUrl: 'https://via.placeholder.com/150'
-            },
-            {
-                id: 6,
-                title: 'Movie Title 6',
-                description: 'This is a brief description of Movie 6.',
-                posterUrl: 'https://via.placeholder.com/150'
-              }
+    id: 7,
+    title: 'Movie Title 7',
+    description: 'This is a brief description of Movie 7.',
+    posterUrl: 'https://via.placeholder.com/150'
+  },
+  {
+    id: 8,
+    title: 'Movie Title 8',
+    description: 'This is a brief description of Movie 8.',
+    posterUrl: 'https://via.placeholder.com/150'
+  },
+  {
+    id: 9,
+    title: 'Movie Title 9',
+    description: 'This is a brief description of Movie 9.',
+    posterUrl: 'https://via.placeholder.com/150'
+  },
+  {
+    id: 10,
+    title: 'Movie Title 10',
+    description: 'This is a brief description of Movie 10.',
+    posterUrl: 'https://via.placeholder.com/150'
+  },
+  {
+    id: 11,
+    title: 'Movie Title 11',
+    description: 'This is a brief description of Movie 11.',
+    posterUrl: 'https://via.placeholder.com/150'
+  },
+  {
+    id: 12,
+    title: 'Movie Title 12',
+    description: 'This is a brief description of Movie 12.',
+    posterUrl: 'https://via.placeholder.com/150'
+  }
   // Add more movies as needed
 ];
 

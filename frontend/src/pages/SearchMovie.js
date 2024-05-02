@@ -5,7 +5,6 @@ function SearchMovie() {
   const [keyword, setKeyword] = useState('');
 
   const handleSearch = () => {
-    // Call your search function with the keyword
     console.log('Search for:', keyword);
   };
 
