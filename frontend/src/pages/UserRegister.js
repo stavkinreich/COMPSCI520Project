@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import PasswordEmailValidation from '../PasswordEmailValidation';
 import emailjs from '@emailjs/browser';
+import Navbar from '../components/Navbar/Navbar.js'
 
 function UserRegister() {
     emailjs.init({
@@ -73,7 +74,9 @@ function UserRegister() {
         }
     }
     return (
-        <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
+    <div>
+        <Navbar />
+        <div className="d-flex justify-content-center align-items-center vh-100" style={{backgroundColor: "#3E2751"}}>
             <div className="bg-white p-3 rounded w-25">
             <h1 className="text-center">Register</h1>
                 <form action="" onSubmit={handleSubmit}>
@@ -99,6 +102,7 @@ function UserRegister() {
                 </form>
             </div>
         </div>
+    </div>
     )
 }
 

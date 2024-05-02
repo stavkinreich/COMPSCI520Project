@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-
+import Navbar from '../components/Navbar/Navbar.js'
 function UserLogin() {
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState({
@@ -43,7 +43,9 @@ function UserLogin() {
                         });
     }
   return (
-    <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
+  <div>
+    <Navbar/>
+    <div className="d-flex justify-content-center align-items-center vh-100" style={{backgroundColor: "#3E2751"}}>
         <div className="bg-white p-3 rounded w-25">
         <h1 className="text-center">Login</h1>
             <form action="" onSubmit={handleSubmit}>
@@ -64,6 +66,7 @@ function UserLogin() {
             </form>
         </div>
     </div>
+  </div>
   )
 }
 
