@@ -1,5 +1,5 @@
 // movieSearch.js
-
+/*
 const fetch = require('node-fetch');
 
 const API_KEY = 'd1cd4d1ba7a58b1513835d935b26b2be';
@@ -26,3 +26,4 @@ const searchMovies = async (query) => {
 module.exports = {
     searchMovies
 };
+*/

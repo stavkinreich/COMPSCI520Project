@@ -47,7 +47,7 @@ const getUserInfo = async function(email) {
     return new Promise(resolve => {
         pool.connect(async (err, db, done) => {
             try {
-                const result = await db.query("SELECT email, password, validated, preflang, prefmov, prefgen FROM \"UserInfo\" WHERE email = $1", [email]);
+                const result = await db.query("SELECT email, password, validated, preflang, prefmov, prefgen, prefmovid FROM \"UserInfo\" WHERE email = $1", [email]);
                 resolve(result);
             } catch (error) {
                 console.error('Error executing query:', error);
@@ -57,6 +57,30 @@ const getUserInfo = async function(email) {
         });
     });
 }
+
+app.post('/api/changePref', async (req, res) => {
+    const email = req.body.userName;
+    const prefMovId = req.body.prefMovId;
+    const prefMov = req.body.prefMov;
+    const prefLang = req.body.prefLang;
+    const prefGen = req.body.prefGen;
+     pool.connect((err, db, done) => {
+            if(err) {
+                response.status(404).send({message: 0})
+            }
+            else {
+                db.query("UPDATE \"UserInfo\" SET prefMovId = $2, prefMov = $3, prefLang = $4, prefGen = $5 WHERE email = $1",[email, prefMovId, prefMov, prefLang, prefGen], (err, table) => {
+                    if (err) {
+                        res.status(404).send({message: 1})
+                    }
+                    else {
+                        res.status(200).send({message: 2})
+                    }
+                })
+            }
+            done();
+        });
+});
 
 app.post('/api/loginUser', async (req, res) => {
     const email = req.body.email;

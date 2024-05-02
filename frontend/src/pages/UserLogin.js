@@ -36,6 +36,7 @@ function UserLogin() {
                                         globalThis.prefLang = data.retObj.prefLang;
                                         globalThis.prefMov = data.retObj.prefMov;
                                         globalThis.prefGen = data.retObj.prefGen;
+                                        globalThis.prefMovId = data.retObj.prefmovid;
                                         navigate('/');
                                     }
                                 });
