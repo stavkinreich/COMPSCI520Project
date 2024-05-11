@@ -5,14 +5,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse import lil_matrix
 import numpy as np
 import time
+
 print(time.time())
-
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-
-
-app = Flask(__name__)
-CORS(app)
 
 # Load the dataset 
 data = pd.read_csv("./dataset/temp.csv")
@@ -91,6 +85,7 @@ def get_collaborative_recommendations(genre_preference, language_preference, fav
     # Return top N recommendations
     return sorted_movies['title'].head(num_recommendations).tolist()
 
+
 # Function to get hybrid recommendations
 def get_hybrid_recommendations(genre_preference, language_preference, favorite_movies):
     # Get collaborative recommendations
@@ -103,47 +98,16 @@ def get_hybrid_recommendations(genre_preference, language_preference, favorite_m
     # Combine both types of recommendations
     all_recommendations = list(set(collab_rec + content_rec))
     
-    return get_data_by_titles(all_recommendations, data)
-
-# Function to search for titles and return corresponding ids
-def get_data_by_titles(titles, dataframe):
-    data_list = []
-    for title in titles:
-        # Search for rows with the specified title
-        matching_rows = dataframe.loc[dataframe['title'] == title]
-        
-        # Check if any rows match the title
-        if not matching_rows.empty:
-            # Get the data corresponding to the title and add to the list
-            for _, row in matching_rows.iterrows():
-                data_list.append({
-                    'poster_path': row['poster_path'],
-                    'title': row['title'],
-                    'overview': row['overview'],
-                    'id': row['id']
-                })
-    return data_list
-
-@app.route('/submit-preferences', methods=['POST'])
-def submit_preferences():
-    data = request.json  # Extract JSON data from the request body
-    selected_genres = data['selectedGenres']
-    selected_languages = data['selectedLanguages']
-    selected_movies = data['selectedMovies']
-
-    # Process the received data (e.g., store it in a database, perform calculations, etc.)
-    processed_data = get_hybrid_recommendations(selected_genres, selected_languages, selected_movies)
-    # Optionally, send a response back to the frontend
-    return jsonify(processed_data)
+    return all_recommendations
 
 # Example usage:
-# user_genre_preference = ["Action", "Adventure"]
-# user_language_preference = ["English", "French"]
-# user_favorite_movies = ["Inception"]
+user_genre_preference = ["Action", "Adventure"]
+user_language_preference = ["English", "French"]
+user_favorite_movies = ["Inception"]
 
-# recommendations = get_hybrid_recommendations(user_genre_preference, user_language_preference, user_favorite_movies)
-# print("Hybrid Recommendations:")
-# print(recommendations)
+recommendations = get_hybrid_recommendations(user_genre_preference, user_language_preference, user_favorite_movies)
+print("Hybrid Recommendations:")
+print(recommendations)
 
 # Export the model
 # Save the TF-IDF vectorizer
@@ -156,6 +120,3 @@ with open('cosine_sim_matrix.pkl', 'wb') as file:
 
 
 print(time.time())
-
-if __name__ == '__main__':
-    app.run(debug=True)
