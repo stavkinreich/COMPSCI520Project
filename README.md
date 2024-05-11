@@ -8,7 +8,7 @@ Browsing movies for the past hour but can't find anything to watch? Let AI do th
 
 1. Download this repository.
 2. Setup your own TMDB API key-token pair.
-3. Run two terminals, one for the frontend and one for the backend.
+3. Run three terminals, one for the frontend, one for the backend and one for the machine learning model. 
 4. In one terminal, go into the backend directory and run 
 
 ```
@@ -19,7 +19,14 @@ node database.js
 ```
 npm start
 ```
-6. The website is now live and will return results to user queries. Any changes made to the frontend will automatically compile.
+
+6. In the last terminal, go into the ml_model directory and run
+
+```
+python training.py
+```
+   
+7. The website is now live and will return results to user queries. Any changes made to the frontend will automatically compile.
 
 ## Configuration
 
