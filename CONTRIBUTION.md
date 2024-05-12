@@ -14,7 +14,10 @@ Worked on the backend.
 
 ## Erin Song
 
-Worked on the backend.
+Worked on:
+- Backend and frontend for Recommender page
+- Frontend for homepage (search bar and filter section)
+- Frontend for header navigation bar
 
 ## Nikhil Mukherjee
 
