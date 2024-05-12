@@ -7,9 +7,18 @@ function DisplayMovie({movie}) {
     const handleClick = () => {
         if(isFilled) {
             globalThis.prefMovId = globalThis.prefMovId.filter(elem => elem !== movie["imdb_id"]);
-            globalThis.prefMov = globalThis.prefMov.filter(elem => elem !== movie["original_title"]);
-            globalThis.prefLang = globalThis.prefLang.filter(elem => elem !== movie["original_language"]);
-            globalThis.prefGen = globalThis.prefGen.filter(elem => !movie["genres"].some(obj => obj["id"] === elem["id"]));
+            //globalThis.prefMov = globalThis.prefMov.filter(elem => elem !== movie["original_title"]);
+            globalThis.prefMov.splice(globalThis.prefMov.indexOf(movie["original_title"]), 1);
+            //globalThis.prefLang = globalThis.prefLang.filter(elem => elem !== movie["original_language"]);
+            globalThis.prefLang.splice(globalThis.prefLang.indexOf(movie["original_language"]), 1);
+            //globalThis.prefGen = globalThis.prefGen.filter(elem => !movie["genres"].some(obj => obj["id"] === elem["id"]));
+            movie["genres"].forEach(obj1 => {
+                    let idToRemove = obj1.id;
+                    let indexToRemove = globalThis.prefGen.findIndex(obj2 => obj2.id === idToRemove);
+                    if (indexToRemove !== -1) {
+                        globalThis.prefGen.splice(indexToRemove, 1);
+                    }
+                });
         }
         else {
             globalThis.prefMovId === null || globalThis.prefMovId === undefined ? globalThis.prefMovId = [movie["imdb_id"]] :
