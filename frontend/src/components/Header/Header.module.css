@@ -1,24 +1,44 @@
 .header {
-    background-color: #3E2751;
-    color: #9267B6;
-    padding: 20px;
-    font-family: "Gill Sans";
-    justify-content: center;
-    margin: auto;
-    text-align: center;
-  }
-
-.centerContainer {
-  flex-grow: 1; /* Allow center container to grow and push right component to the right */
+  background-color: #3E2751;
+  color: #9267B6;
+  padding: 20px;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
 }
 
-.center {
-    margin: auto;
+.navbar {
+background-color: #3E2751;
+display: flex;
+width: 100%; 
+justify-content: space-between; 
+overflow: hidden;
+font-size: 20px;
+}
+
+.navbar ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex; 
+}
+
+.navbar ul li {
+float: left; 
+}
+
+.navbar ul li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+.navbar ul li a:hover {
+background-color: #130D18;
 }
 
 .right {
-  text-align: right; /* Pushes the element to the right */
-  /* Alternatively, you can use:
-  justify-self: end; */
-  font-size: 20px;
+display: flex; 
 }

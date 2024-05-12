@@ -3,6 +3,7 @@ import Header from '../components/Header/Header.js'
 import Navbar from '../components/Navbar/Navbar.js'
 import Footer from '../components/Footer/Footer.js'
 import MovieRecommender from '../components/MovieRecommender/MovieRecommender.js'
+import RecommendedMovies from './RecommendedMovies.js';
 import ScrollableSection from '../components/ScrollableSection/ScrollableSection.js'
 import styles from '../components/MovieRecommender/MovieRecommender.module.css';
 import SearchMovie from './SearchMovie';
@@ -12,10 +13,13 @@ function Landing() {
   const [trigRender, setTrigRender] = useState(0);
   const [checkedGenres, setCheckedGenres] = useState([]);
   const [checkedLanguage, setCheckedLanguages] = useState([]);
+
   const genres = globalThis.prefGen === null || globalThis.prefGen === undefined ? [] :
-                         globalThis.prefGen;
+                //  globalThis.prefGen;
+                [...new Set(globalThis.prefGen.map(g => JSON.stringify(g)))].map(g => JSON.parse(g));
   const languages = globalThis.prefLang === null || globalThis.prefLang === undefined ? [] :
-                            globalThis.prefLang;
+                    [...new Set(globalThis.prefLang)];
+
   const handleCheckLanguageChange = (event) => {
       const { value, checked } = event.target;
       if (checked) {
@@ -23,16 +27,31 @@ function Landing() {
       } else {
         setCheckedLanguages(checkedLanguage.filter(item => item !== value));
     };
-    }
-  const arrayIncludesObject = (array, object) => array.some(item => isEqual(item, object));
+  };
+
+
+
+  // const arrayIncludesObject = (array, object) => array.some(item => isEqual(item, object));
+
+  // const handleCheckGenreChange = (event) => {
+  //    const checkedId = event.target.value;
+  //    if(event.target.checked){
+  //     setCheckedGenres([...checkedGenres, JSON.parse(checkedId)])
+  //    }else{
+  //     setCheckedGenres(checkedGenres.filter(id=> id["id"] !== JSON.parse(checkedId)["id"]))
+  //    }
+  //    }
+     
   const handleCheckGenreChange = (event) => {
-     const checkedId = event.target.value;
-     if(event.target.checked){
-      setCheckedGenres([...checkedGenres, JSON.parse(checkedId)])
-     }else{
-      setCheckedGenres(checkedGenres.filter(id=> id["id"] !== JSON.parse(checkedId)["id"]))
-     }
-     }
+    const genre = JSON.parse(event.target.value);
+    const isGenreChecked = event.target.checked;
+    if(isGenreChecked) {
+      if(!checkedGenres.some(g => g.id === genre.id)) {
+        setCheckedGenres([...checkedGenres, genre]);
+      }
+    }
+  }
+
   return (
       <div >
         <Header/>

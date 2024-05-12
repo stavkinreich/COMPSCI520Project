@@ -212,5 +212,3 @@ app.get('/search-dbs', async (req, res) => {
         res.status(500).send({message: 'Failed to fetch films', error: error.message})
     }
 });
-
-
