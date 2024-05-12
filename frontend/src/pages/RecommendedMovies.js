@@ -2,28 +2,31 @@ import React, {useEffect, useState} from 'react';
 import Header from '../components/Header/Header.js'
 import ScrollableSection from '../components/ScrollableSection/ScrollableSection.js'
 import DisplayMovie from './DisplayMovie.js';
-// import MovieRecommender from '../components/MovieRecommender/MovieRecommender.module.css';
 import styles from '../components/MovieRecommender/MovieRecommender.module.css'
 
 function RecommendedMovies({ userPreferences, favoriteMovies }) {
 
     const [recs, setRecs] = useState([]);
-    const [prefs, setPrefs] = useState([]);
-    const [favorites, setFavorites] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const [selectedMovie, setSelectedMovie] = useState({})
-    const genreArr = globalThis.prefGen.map(genre => genre.name);
+    const [isEmpty, setIsEmpty] = useState(true);
+
     useEffect(() => {
+      const genreArr = globalThis.prefGen.map(genre => genre.name);
+      setIsEmpty(genreArr.length === 0 && globalThis.prefLang.length === 0 && globalThis.prefMov.length === 0);
+
         const fetchRecs = async () => {
+          if (isEmpty) {
+            setIsLoading(false);
+          }
             try {
                 setIsLoading(true);
                 const response = await fetch('http://127.0.0.1:3001/submit-preferences', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    // body: JSON.stringify({preferences: userPreferences, favoriteMovies})
                     body: JSON.stringify({
                         selectedGenres: genreArr,
                         selectedLanguages: globalThis.prefLang,
@@ -32,7 +35,6 @@ function RecommendedMovies({ userPreferences, favoriteMovies }) {
                 if (!response.ok) throw new Error('Failed to Fetch');
                 const data = await response.json();
                 console.log("Fetched Recs:", data);
-                // setRecs(data);
                 setRecs(data.map(movie => ({
                   ...movie,
                   mov_id: movie.id,
@@ -69,7 +71,6 @@ function RecommendedMovies({ userPreferences, favoriteMovies }) {
       }
 
     }
-    // })
 
     const handleBackClick = () => {
       setSelectedMovie({});
@@ -82,7 +83,9 @@ function RecommendedMovies({ userPreferences, favoriteMovies }) {
           {isLoading ? (
             <p>Loading recommendations...</p>
           ) : error ? (
-            <p>Error: {error}</p>
+            <p>Error: {error}</p> 
+          ) : isEmpty ? (
+            <p>Please add some favorites to see your personalized recommended movies!</p>
           ) : Object.keys(selectedMovie).length === 0 ? (
             <div className={styles.movieRecommender}>
               {recs.map((movie) =>
