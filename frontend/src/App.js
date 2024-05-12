@@ -5,6 +5,7 @@ import UserRegister from "./pages/UserRegister"
 import Landing from './pages/Landing';
 import RegisterSuccessful from './pages/RegisterSuccessful';
 import VerifiedEmail from './pages/VerifiedEmail'
+import RecommendedMovies from './pages/RecommendedMovies.js'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Login" element={<UserLogin/>}></Route>
         <Route path="/RegisteredSuccessfully" element={<RegisterSuccessful/>}></Route>
         <Route path="/verify-email/:token" element={<VerifiedEmail/>} />
+        <Route path="/Recommendations" element={<RecommendedMovies/>}></Route>
       </Routes>
     </BrowserRouter>
   );

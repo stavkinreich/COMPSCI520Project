@@ -15,7 +15,6 @@ function Landing() {
   const [checkedLanguage, setCheckedLanguages] = useState([]);
 
   const genres = globalThis.prefGen === null || globalThis.prefGen === undefined ? [] :
-                //  globalThis.prefGen;
                 [...new Set(globalThis.prefGen.map(g => JSON.stringify(g)))].map(g => JSON.parse(g));
   const languages = globalThis.prefLang === null || globalThis.prefLang === undefined ? [] :
                     [...new Set(globalThis.prefLang)];
