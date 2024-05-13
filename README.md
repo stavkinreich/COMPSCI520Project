@@ -41,13 +41,34 @@ When running the application using `training.py`, ensure that the generated file
 
 
 
-6. In the last terminal, go into the ml_model directory and run
+3. In the last terminal, go into the ml_model directory and run
 
 ```
 python training.py
 ```
    
-7. The website is now live and will return results to user queries. Any changes made to the frontend will automatically compile.
+4. The website is now live and will return results to user queries. Any changes made to the frontend will automatically compile.
+
+#### Run Unit Test Cases
+
+For our test cases, we use the built in React testing library and Jest-DOM. To run our unit tests, follow the below instructions:
+
+1. Install the necessary testing libraries
+```
+npm install react-scripts @testing-library/react @testing-library/jest-dom @testing-library/user-event react-router-dom react-test-renderer --save-dev
+```
+
+2. Make sure you are in the /frontend directory
+
+3. Run the test cases
+```
+npm run test
+```
+
+You can view the test cases in 
+```
+/frontend/src/components/__tests__/components.test.js
+```
 
 ## Configuration
 
