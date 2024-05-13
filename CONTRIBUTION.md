@@ -22,6 +22,7 @@ Worked on:
 - Backend and frontend for Recommender page
 - Frontend for homepage (search bar and filter section)
 - Frontend for header navigation bar
+- Wrote test cases for website components
 
 ## Nikhil Mukherjee
 
