@@ -18,7 +18,10 @@ function Landing() {
                 [...new Set(globalThis.prefGen.map(g => JSON.stringify(g)))].map(g => JSON.parse(g));
   const languages = globalThis.prefLang === null || globalThis.prefLang === undefined ? [] :
                     [...new Set(globalThis.prefLang)];
-
+  console.log(genres)
+  console.log(languages)
+  console.log(checkedGenres)
+  console.log(checkedLanguage)
   const handleCheckLanguageChange = (event) => {
       const { value, checked } = event.target;
       if (checked) {
@@ -48,6 +51,9 @@ function Landing() {
       if(!checkedGenres.some(g => g.id === genre.id)) {
         setCheckedGenres([...checkedGenres, genre]);
       }
+    }
+    else {
+        setCheckedGenres(checkedGenres.filter(id=> id["id"] !== genre["id"]))
     }
   }
 
