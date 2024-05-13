@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Browsing movies for the past hour but can't find anything to watch? Let AI do the work for you. Presenting our Movie Recommendation Web Application, a website where users can get movie suggestions tailored specifically to their preferences. Our service is based on a freemium model, where guest users can still access the search engine but only registered users can use our website to the fullest. This includes getting suggestions based on their watch history, preferred genre and likes/dislikes. They can also leave reviews if they so wish to help other users.
+Browsing movies for the past hour but can't find anything to watch? Let AI do the work for you. Presenting our Movie Recommendation Web Application, a website where users can get movie suggestions tailored specifically to their preferences. Our service is based on a freemium model, where guest users can still access the search engine but only registered users can use our website to the fullest. This includes getting suggestions based on their watch history, preferred genre and likes/dislikes.
 
 ## Installation Instructions
 
