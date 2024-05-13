@@ -22,7 +22,7 @@ function SearchMovie({genres, languages}) {
         for(let i = 0; i < response.results.length; i++) {
             console.log(genres);
             console.log(languages);
-            if((languages.length !== 0 && !languages.includes(response.results[i]["original_language"])) || (genres.length !== 0 && response.results[i]["genre_ids"].every(item => !(genres.some(elem => elem["id"] === item))))) {
+            if((languages.length !== 0 && !languages.includes(response.results[i]["original_language"])) || (genres.length !== 0 && (genres.length !== 0 && genres.some(genre => !response.results[i]["genre_ids"].includes(genre["id"]))))) {
                 console.log("hit")
                 continue;
             }
