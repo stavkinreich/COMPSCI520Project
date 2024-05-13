@@ -78,6 +78,8 @@ The ML model is trained on the [TMDB Dataset](https://www.kaggle.com/datasets/as
 
 We are using the [TMDB API](https://developer.themoviedb.org/docs/getting-started) to support results for user queries.
 
+We are using a PostgreSQL database hosted on AWS RDS on a VPC to store all user-related information.
+
 ## Credits
 
 Project Leader
