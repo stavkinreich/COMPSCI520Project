@@ -4,6 +4,8 @@
 
 Browsing movies for the past hour but can't find anything to watch? Let AI do the work for you. Presenting our Movie Recommendation Web Application, a website where users can get movie suggestions tailored specifically to their preferences. Our service is based on a freemium model, where guest users can still access the search engine but only registered users can use our website to the fullest. This includes getting suggestions based on their watch history, preferred genre and likes/dislikes.
 
+Here is a link to the video demo of our website: https://drive.google.com/file/d/1PcQGfui3PhkrjoZnRaEb_0OZaCXRnuOc/view?usp=sharing
+
 ## Installation Instructions
 
 1. Download this repository from the new-filter-branch as that is the default branch in the repository.
