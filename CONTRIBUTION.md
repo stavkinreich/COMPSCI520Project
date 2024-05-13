@@ -2,7 +2,11 @@
 
 ## Stav Kinreich
 
+The team leader that coordinated the website development.
 Worked on the frontend.
+Implemented the User Registration and Login functionalities.
+Created the user PostgreSQL database with all relevant tables and columns, and hosted the database on a remote AWS RDS server for access and collaboration.
+Integrated the API calls between the web app and the database.
 
 ## Bhavik Ransubhe
 
