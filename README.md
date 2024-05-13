@@ -6,7 +6,7 @@ Browsing movies for the past hour but can't find anything to watch? Let AI do th
 
 ## Installation Instructions
 
-1. Download this repository.
+1. Download this repository from the new-filter-branch as that is the default branch in the repository.
 2. Setup your own TMDB API key-token pair.
 3. Run three terminals, one for the frontend, one for the backend and one for the machine learning model. 
 4. In one terminal, go into the backend directory and run 
