@@ -8,17 +8,12 @@ import time
 
 print(f"Model start time :{time.time()}")
 
-# Load the dataset 
 data = pd.read_csv("./dataset/temp.csv")
 
 # Content-Based Filtering: Features
 features = ["title", "overview", "tagline", "genres"]
 content_data = data[features]
-
-# Fill missing values with empty string
 content_data = content_data.fillna("")
-
-# Combine features into a single string
 content_data["combined_features"] = content_data.apply(lambda row: ' '.join(row[features]), axis=1)
 
 # Function to compute cosine similarity in batches
@@ -26,15 +21,12 @@ def compute_cosine_similarity_in_batches(tfidf_matrix, batch_size=1000):
     num_items = tfidf_matrix.shape[0]
     num_batches = int(np.ceil(num_items / batch_size))
     
-    # Initialize an empty lil_matrix to store cosine similarities
     cosine_sim = lil_matrix((num_items, num_items), dtype=np.float32)
     
     for i in range(num_batches):
         start_idx = i * batch_size
         end_idx = min((i + 1) * batch_size, num_items)
         batch_tfidf_matrix = tfidf_matrix[start_idx:end_idx]
-        
-        # Compute cosine similarities for the current batch
         batch_cosine_sim = cosine_similarity(batch_tfidf_matrix, tfidf_matrix)
         cosine_sim[start_idx:end_idx] = batch_cosine_sim
         

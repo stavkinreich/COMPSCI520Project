@@ -6,7 +6,10 @@ Worked on the frontend.
 
 ## Bhavik Ransubhe
 
-Worked on the ML model.
+Worked on:
+- Implementing and training machine learning model.
+- Integrating in backend.
+- Documentation
 
 ## Shyam Panigrahi
 
